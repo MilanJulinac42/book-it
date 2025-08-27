@@ -1,10 +1,10 @@
 import { IsEmail, IsString, MinLength } from "class-validator"
 
 export class RegisterDto {
-  @IsEmail()
+  @IsEmail({}, { message: 'Not correct email format.' })
   email: string;
 
   @IsString()
-  @MinLength(6)
+  @MinLength(6, {message: 'Password must have 6 characters or more'})
   password: string;
 }

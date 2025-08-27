@@ -1,6 +1,6 @@
 import { IsUUID } from 'class-validator';
 
 export class CreateBookingDto {
-  @IsUUID('4', { message: 'service_id must be a valid UUID v4' })
+  @IsUUID('4', { message: 'Service ID must be valid' })
   service_id: string;
 }
