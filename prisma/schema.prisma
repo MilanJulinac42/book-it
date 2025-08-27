@@ -9,8 +9,8 @@ datasource db {
 
 
 model User {
-  id            String    @id @default(uuid())
-  email         String    @unique
+  id            String     @id @default(uuid())
+  email         String     @unique
   password_hash String
   points_balance Int       @default(100)
   bookings      Booking[]
@@ -19,12 +19,12 @@ model User {
 }
 
 model Service {
-  id            String    @id @default(uuid())
-  title         String    @unique
+  id            String     @id @default(uuid())
+  title         String     @unique
   start_time    DateTime
   end_time      DateTime
   capacity      Int
-  is_group      Boolean   @default(false)
+  is_group      Boolean    @default(false)
   price_points  Int
   bookings      Booking[]
 
@@ -32,13 +32,14 @@ model Service {
 }
 
 model Booking {
-  id            String   @id @default(uuid())
+  id            String    @id @default(uuid())
+  idempotency_key  String @unique
   user_id       String
   service_id    String
-  created_at    DateTime @default(now())
+  created_at    DateTime  @default(now())
 
-  user          User     @relation(fields: [user_id], references: [id])
-  service       Service  @relation(fields: [service_id], references: [id])
+  user          User      @relation(fields: [user_id], references: [id])
+  service       Service   @relation(fields: [service_id], references: [id])
 
   @@unique([user_id, service_id])
   @@map("bookings")

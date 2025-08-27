@@ -13,8 +13,24 @@ export class BookingsService {
   constructor(private prisma: PrismaService) {}
 
   async createBooking(createBookingDto: CreateBookingDto, user: User) {
-    const { service_id } = createBookingDto;
+    const { service_id, idempotency_key } = createBookingDto;
 
+    const existingBooking = await this.prisma.booking.findUnique({
+      where: { idempotency_key },
+      include: { user: true, service: true },
+    });
+    
+    if (existingBooking) {
+      console.log(
+        `Request with idempotency key ${idempotency_key} already processed.`,
+      );
+      return {
+        booking: existingBooking,
+        whatsappPayload: this.generateWhatsappPayload(existingBooking),
+        icsEvent: this.generateIcsEvent(existingBooking),
+      };
+    }
+    
     const service = await this.prisma.service.findUnique({
       where: { id: service_id },
       include: { bookings: true },
@@ -46,6 +62,7 @@ export class BookingsService {
         data: {
           user_id: user.id,
           service_id: service.id,
+          idempotency_key,
         },
         include: { user: true, service: true },
       });
