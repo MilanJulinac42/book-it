@@ -76,3 +76,4 @@ This is a mini-project built with NestJS and Prisma, designed to simulate a book
 
 * Add frontend UI
 * Complete all of tests
+* Add variables to postman collection
