@@ -11,6 +11,7 @@ This is a mini-project built with NestJS and Prisma, designed to simulate a book
 * Idempotency: The POST /bookings endpoint is idempotent, ensuring that a request, even if sent multiple times, only results in a single booking and point deduction.
 * Automated Data Generation: Upon a successful booking, the API generates ICS and WhatsApp payloads for notifications.
 * Security: Implemented rate limiting to protect against brute-force attacks.
+* Unit test for ```booking.service```
 
 ---
 
@@ -70,3 +71,9 @@ This is a mini-project built with NestJS and Prisma, designed to simulate a book
 * `GET /api/bookings/:id/ics` - Downloads an ICS calendar file for a specific booking.
 
 ---
+
+
+### **TODO**
+
+* Add frontend UI
+* Complete all of tests
