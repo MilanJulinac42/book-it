@@ -52,7 +52,6 @@ This is a mini-project built with NestJS and Prisma, designed to simulate a book
     npx prisma migrate dev
     npx prisma db seed
     ```
-    *Note: Adjust the commands if they are different in your `package.json` file.*
 
 5.  **Start the application:**
     ```bash
