@@ -75,9 +75,29 @@ This is a mini-project built with NestJS and Prisma, designed to simulate a book
 
 ---
 
+### **Design Decisions & Trade-offs**
+
+* NestJS & TypeScript: The core API was built using NestJS and TypeScript. This decision was made to leverage NestJS's modular architecture, built-in dependency injection, and clean separation of concerns (controllers, services, modules). TypeScript was used to ensure type safety, which significantly reduces bugs and improves code clarity and maintainability.
+
+* Prisma ORM: Prisma was chosen as the ORM for its developer-friendly schema definition and type-safe queries. It simplifies database migrations and data modeling, allowing for rapid development while maintaining a clear and structured database layer.
+
+* Idempotency & Rate Limiting: The POST /bookings endpoint was designed with an idempotency key to prevent double bookings and to ensure points are deducted only once, even if the user or the network retries the request. Basic rate limiting was also implemented to protect against spam or brute-force attacks.
+
+---
+
+### **Next Steps & Future Improvements**
+
+* Frontend using Next.js: With more time, I would create a modern frontend built with Next.js. It would contain pages for user, services, bookings. I would use shadCn for UI and tailwind for aditional styling.
+
+* End-to-End (E2E) Tests: The project would be extended to include E2E tests using a framework like Cypress or Playwright. These tests would simulate real user scenarios, such as the full login-book-logout flow, to ensure that the entire system works correctly from start to finish.
+
+* Improved Error Handling: Implement more detailed and user-friendly error messages on both the API and the frontend to provide a better debugging and user experience.
+
+---
 
 ### **TODO**
 
 * Add frontend UI
 * Complete all of tests
 * Add variables to postman collection
+* Short Loom video
